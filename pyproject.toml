@@ -1,0 +1,21 @@
+[project]
+name = "krea2-style-refrence"
+version = "1.0.0"
+description = "Krea2 / Krea2 Turbo style semantic conditioning node for ComfyUI."
+requires-python = ">=3.10"
+dependencies = []
+authors = [
+    { name = "Doc_workBox" }
+]
+classifiers = [
+    "Operating System :: OS Independent",
+    "Environment :: GPU :: NVIDIA CUDA"
+]
+
+[project.urls]
+Repository = "https://github.com/DocWorkBox/ComfyUI_Krea2_Style_Refrence"
+"Bug Tracker" = "https://github.com/DocWorkBox/ComfyUI_Krea2_Style_Refrence/issues"
+
+[tool.comfy]
+PublisherId = "zhaoke1006"
+DisplayName = "Krea2 Style Refrence"
