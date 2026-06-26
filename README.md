@@ -8,8 +8,6 @@ This package now keeps only one node:
 Krea2/风格 -> Krea2 风格语义条件
 ```
 
-旧的 latent / RoPE 风格参考节点已经移除。那条路线容易污染画面局部区域，尤其是左上角，实际风格迁移效果也不稳定。
-
 ## 节点作用
 
 `Krea2 风格语义条件` 会把参考图作为视觉语义输入送进 Krea2 / Qwen3-VL 文本编码器：
