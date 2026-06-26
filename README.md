@@ -52,6 +52,8 @@ vae/qwen_image_vae.safetensors
 
 ## 示例工作流
 
+![Krea2 style semantic workflow](assets/krea2_style_semantic_workflow.png)
+
 示例文件位于：
 
 ```text
