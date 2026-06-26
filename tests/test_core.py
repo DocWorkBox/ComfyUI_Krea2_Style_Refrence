@@ -101,7 +101,7 @@ class Krea2StyleSemanticConditioningTests(unittest.TestCase):
 
         semantic_node = next(node for node in workflow["nodes"] if node.get("type") == "Krea2StyleSemanticConditioning")
         self.assertEqual(semantic_node["widgets_values"][1], "轻微")
-        self.assertEqual(semantic_node["widgets_values"][2], 768)
+        self.assertEqual(semantic_node["widgets_values"][2], 512)
 
 
 if __name__ == "__main__":
