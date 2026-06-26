@@ -30,7 +30,13 @@ clip.tokenize(prompt, images=[style_image])
 
 ## 安装
 
-在 ComfyUI 的 `custom_nodes` 目录执行：
+推荐使用 ComfyUI Manager 安装：
+
+```text
+Manager -> Custom Nodes Manager -> 搜索 Krea2 Style Refrence -> Install
+```
+
+也可以手动安装。在 ComfyUI 的 `custom_nodes` 目录执行：
 
 ```bash
 git clone https://github.com/DocWorkBox/ComfyUI_Krea2_Style_Refrence.git
