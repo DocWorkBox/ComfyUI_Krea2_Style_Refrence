@@ -22,13 +22,19 @@ class Krea2StyleSemanticConditioningTests(unittest.TestCase):
                 sys.modules[module_name] = old_module
         return module
 
-    def test_package_only_registers_semantic_conditioning_node(self):
+    def test_package_registers_semantic_conditioning_and_fusion_nodes(self):
         module = self.load_custom_node_module()
 
-        self.assertEqual(set(module.NODE_CLASS_MAPPINGS), {"Krea2StyleSemanticConditioning"})
+        self.assertEqual(
+            set(module.NODE_CLASS_MAPPINGS),
+            {"Krea2StyleSemanticConditioning", "Krea2StyleSemanticFusion"},
+        )
         self.assertEqual(
             module.NODE_DISPLAY_NAME_MAPPINGS,
-            {"Krea2StyleSemanticConditioning": "Krea2 风格语义条件"},
+            {
+                "Krea2StyleSemanticConditioning": "Krea2 风格语义条件",
+                "Krea2StyleSemanticFusion": "Krea2 风格融合",
+            },
         )
         self.assertFalse(hasattr(module, "WEB_DIRECTORY"))
 
@@ -87,21 +93,106 @@ class Krea2StyleSemanticConditioningTests(unittest.TestCase):
         self.assertEqual(len(clip.images), 1)
         self.assertEqual(tuple(clip.images[0].shape[-1:]), (3,))
 
+    def test_semantic_fusion_schema_outputs_conditioning_and_target_latent(self):
+        module = self.load_custom_node_module()
+        node = module.NODE_CLASS_MAPPINGS["Krea2StyleSemanticFusion"]
+        input_types = node.INPUT_TYPES()
+
+        self.assertEqual(node.RETURN_TYPES, ("CONDITIONING", "LATENT"))
+        self.assertEqual(node.RETURN_NAMES, ("条件", "目标Latent"))
+        self.assertEqual(node.CATEGORY, "Krea2/风格")
+
+        required = input_types["required"]
+        self.assertIn("clip", required)
+        self.assertIn("vae", required)
+        self.assertIn("style_image", required)
+        self.assertIn("target_image", required)
+        self.assertIn("prompt", required)
+        self.assertEqual(required["target_image"][1]["display_name"], "目标结构图")
+        self.assertIn("custom_instruction", input_types["optional"])
+
+    def test_semantic_fusion_uses_style_image_for_clip_and_target_image_for_latent(self):
+        import torch
+
+        module = self.load_custom_node_module()
+
+        class FakeClip:
+            def __init__(self):
+                self.text = None
+                self.images = None
+
+            def tokenize(self, text, images=None):
+                self.text = text
+                self.images = images
+                return {"tokens": "ok"}
+
+            def encode_from_tokens_scheduled(self, tokens):
+                return [("conditioning", {"tokens": tokens})]
+
+        class FakeVAE:
+            def __init__(self):
+                self.pixels = None
+
+            def spacial_compression_encode(self):
+                return 8
+
+            def encode(self, pixels):
+                self.pixels = pixels
+                return torch.ones(1, 16, pixels.shape[1] // 8, pixels.shape[2] // 8)
+
+        clip = FakeClip()
+        vae = FakeVAE()
+        style_image = torch.zeros(1, 32, 16, 4)
+        target_image = torch.zeros(1, 17, 19, 3)
+        node = module.NODE_CLASS_MAPPINGS["Krea2StyleSemanticFusion"]()
+
+        conditioning, latent = node.encode(
+            clip,
+            vae,
+            style_image,
+            target_image,
+            "a portrait with the same pose",
+            "平衡",
+            384,
+            "",
+        )
+
+        self.assertEqual(conditioning, [("conditioning", {"tokens": {"tokens": "ok"}})])
+        self.assertIn("style guide", clip.text)
+        self.assertIn("a portrait with the same pose", clip.text)
+        self.assertEqual(len(clip.images), 1)
+        self.assertEqual(tuple(clip.images[0].shape[-1:]), (3,))
+        self.assertEqual(tuple(vae.pixels.shape), (1, 16, 16, 3))
+        self.assertEqual(tuple(latent["samples"].shape), (1, 16, 2, 2))
+
     def test_example_workflow_uses_semantic_node_only(self):
         root = pathlib.Path(__file__).resolve().parents[1]
         workflow_dir = root / "workflows"
         workflows = sorted(path.name for path in workflow_dir.glob("*.json"))
-        self.assertEqual(workflows, ["krea2_style_reference_semantic_example.json"])
+        self.assertEqual(
+            workflows,
+            [
+                "krea2_style_fusion_img2img_example.json",
+                "krea2_style_reference_semantic_example.json",
+            ],
+        )
 
-        workflow = json.loads((workflow_dir / workflows[0]).read_text(encoding="utf-8"))
+        workflow = json.loads((workflow_dir / "krea2_style_reference_semantic_example.json").read_text(encoding="utf-8"))
         node_types = [node.get("type") for node in workflow.get("nodes", [])]
 
         self.assertIn("Krea2StyleSemanticConditioning", node_types)
         self.assertNotIn("Krea2StyleReference", node_types)
+        self.assertNotIn("Krea2StyleSemanticFusion", node_types)
 
         semantic_node = next(node for node in workflow["nodes"] if node.get("type") == "Krea2StyleSemanticConditioning")
         self.assertEqual(semantic_node["widgets_values"][1], "轻微")
         self.assertEqual(semantic_node["widgets_values"][2], 512)
+
+        fusion_workflow = json.loads((workflow_dir / "krea2_style_fusion_img2img_example.json").read_text(encoding="utf-8"))
+        fusion_node_types = [node.get("type") for node in fusion_workflow.get("nodes", [])]
+
+        self.assertIn("Krea2StyleSemanticFusion", fusion_node_types)
+        self.assertNotIn("Krea2StyleReference", fusion_node_types)
 
 
 if __name__ == "__main__":

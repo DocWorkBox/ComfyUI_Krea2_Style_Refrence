@@ -1,7 +1,7 @@
 [project]
 name = "krea2-style-refrence"
-version = "1.0.0"
-description = "Krea2 / Krea2 Turbo style semantic conditioning node for ComfyUI."
+version = "1.1.0"
+description = "Krea2 / Krea2 Turbo style semantic conditioning and img2img fusion nodes for ComfyUI."
 requires-python = ">=3.10"
 dependencies = []
 authors = [
