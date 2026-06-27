@@ -91,11 +91,15 @@ denoise: 1.0
 
 ## 示例工作流：图生图风格融合
 
+![Krea2 style fusion workflow](assets/krea2_style_fusion_workflow.png)
+
 示例文件位于：
 
 ```text
 workflows/krea2_style_fusion_img2img_example.json
 ```
+
+该示例使用 ComfyUI 自带的 `Resize Images by Longer Edge` 节点把目标图缩放到合适尺寸；如果导入后提示缺失，请先更新 ComfyUI，或替换为任意等比例缩放节点。
 
 基本连接方式：
 
@@ -109,6 +113,14 @@ Krea2 风格融合.目标Latent -> KSampler.Latent图像
 ```
 
 `target_image` 不会进入 CLIP 图像条件；它只通过 VAE latent 保留主体、构图、姿势和空间结构。`style_image` 才是进入 Krea2/Qwen3-VL 图像 token 路径的风格参考图。
+
+融合节点的 `prompt` 不要留空。这里要描述 `target_image` 的主体、场景和构图，不要描述风格参考图本身。推荐写法：
+
+```text
+a young girl in a red coat standing in a crowded subway station corridor,
+commuters around her, overhead fluorescent lights, deep perspective,
+preserve the target image composition and subject
+```
 
 图生图融合推荐从这些 `denoise` 起点测试：
 
@@ -144,6 +156,22 @@ Krea2 风格融合.目标Latent -> KSampler.Latent图像
 - 如果风格不明显，优先尝试更明确的 `自定义风格指令`，再提高 `视觉编码分辨率`。
 - 如果主体被参考图影响太多，降低 `语义风格强度`，并在提示词中强调目标主体。
 - 图生图融合时，如果结构丢失，优先降低 KSampler `denoise`；如果风格不明显，再提高 `语义风格强度` 或 `denoise`。
+
+图生图融合调参顺序：
+
+```text
+结构不像 target image:
+  先把 KSampler denoise 降到 0.35-0.45，并在 prompt 里明确目标主体、场景、构图。
+
+风格不够明显:
+  先把语义风格强度从 轻微/平衡 提到 平衡/强烈，再把 denoise 小幅提高到 0.55-0.65。
+
+参考图主体侵入:
+  降低语义风格强度，并在 prompt 里明确不要复制参考图主体，只保留 target image 的人物和场景。
+
+风格细节不足:
+  把视觉编码分辨率从 384 提到 512；显存充足时再试 768。
+```
 
 ## 开发验证
 

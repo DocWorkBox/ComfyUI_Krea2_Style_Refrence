@@ -194,6 +194,14 @@ class Krea2StyleSemanticConditioningTests(unittest.TestCase):
         self.assertIn("Krea2StyleSemanticFusion", fusion_node_types)
         self.assertNotIn("Krea2StyleReference", fusion_node_types)
 
+        fusion_node = next(node for node in fusion_workflow["nodes"] if node.get("type") == "Krea2StyleSemanticFusion")
+        ksampler_node = next(node for node in fusion_workflow["nodes"] if node.get("type") == "KSampler")
+        self.assertNotEqual(fusion_node["widgets_values"][0].strip(), "")
+        self.assertEqual(ksampler_node["widgets_values"][-1], 0.55)
+        latent_input = next(input_def for input_def in ksampler_node["inputs"] if input_def["name"] == "latent_image")
+        latent_output = next(output_def for output_def in fusion_node["outputs"] if output_def["name"] == "目标Latent")
+        self.assertIn(latent_input["link"], latent_output["links"])
+
 
 if __name__ == "__main__":
     unittest.main()

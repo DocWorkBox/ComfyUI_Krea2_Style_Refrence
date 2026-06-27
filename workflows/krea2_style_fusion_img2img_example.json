@@ -1,8 +1,8 @@
 {
   "id": "08988737-a544-4ab1-99fb-22d67b7c36e3",
   "revision": 0,
-  "last_node_id": 73,
-  "last_link_id": 115,
+  "last_node_id": 75,
+  "last_link_id": 122,
   "nodes": [
     {
       "id": 58,
@@ -18,13 +18,13 @@
       "flags": {
         "collapsed": false
       },
-      "order": 10,
+      "order": 9,
       "mode": 0,
       "inputs": [
         {
           "name": "conditioning",
           "type": "CONDITIONING",
-          "link": 103
+          "link": 116
         }
       ],
       "outputs": [
@@ -44,186 +44,6 @@
       "widgets_values": []
     },
     {
-      "id": 56,
-      "type": "CLIPLoader",
-      "pos": [
-        848.2016208333333,
-        -101.31546341552672
-      ],
-      "size": [
-        450,
-        170
-      ],
-      "flags": {},
-      "order": 0,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "CLIP",
-          "type": "CLIP",
-          "links": [
-            100
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "CLIPLoader",
-        "cnr_id": "comfy-core",
-        "ver": "0.25.0",
-        "models": [
-          {
-            "name": "qwen3vl_4b_fp8_scaled.safetensors",
-            "url": "https://huggingface.co/Comfy-Org/Krea-2/resolve/main/text_encoders/qwen3vl_4b_fp8_scaled.safetensors",
-            "directory": "text_encoders"
-          }
-        ]
-      },
-      "widgets_values": [
-        "qwen3vl_4b_fp8_scaled.safetensors",
-        "krea2",
-        "default"
-      ]
-    },
-    {
-      "id": 63,
-      "type": "PrimitiveStringMultiline",
-      "pos": [
-        191.6599541666667,
-        -359.17650416666663
-      ],
-      "size": [
-        570,
-        800
-      ],
-      "flags": {},
-      "order": 1,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "STRING",
-          "type": "STRING",
-          "links": [
-            105
-          ]
-        }
-      ],
-      "title": "Text String (User Prompt)",
-      "properties": {
-        "Node name for S&R": "PrimitiveStringMultiline",
-        "cnr_id": "comfy-core",
-        "ver": "0.25.0"
-      },
-      "widgets_values": [
-        "A high-resolution, surreal digital illustration showing a human hand holding a martini glass. The image is overlaid with whimsical, expressive ink-style doodles, including a cartoon figure inside the glass, a drawn citrus wedge on the rim, and various abstract sketches and faces surrounding the glass against a clean, white background. The style seamlessly blends a realistic, lit photograph with loose, hand-drawn marker artistry, creating a playful and artistic juxtaposition."
-      ],
-      "color": "#322",
-      "bgcolor": "#533"
-    },
-    {
-      "id": 57,
-      "type": "VAELoader",
-      "pos": [
-        858.5767839405406,
-        130.40566568400132
-      ],
-      "size": [
-        450,
-        120
-      ],
-      "flags": {},
-      "order": 3,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "VAE",
-          "type": "VAE",
-          "links": [
-            79,
-            113
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "VAELoader",
-        "cnr_id": "comfy-core",
-        "ver": "0.25.0",
-        "models": [
-          {
-            "name": "qwen_image_vae.safetensors",
-            "url": "https://huggingface.co/Comfy-Org/Krea-2/resolve/main/vae/qwen_image_vae.safetensors",
-            "directory": "vae"
-          }
-        ]
-      },
-      "widgets_values": [
-        "qwen_image_vae.safetensors"
-      ]
-    },
-    {
-      "id": 53,
-      "type": "KSampler",
-      "pos": [
-        1886.9881730313389,
-        -301.2219587121206
-      ],
-      "size": [
-        320,
-        590
-      ],
-      "flags": {},
-      "order": 11,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "model",
-          "type": "MODEL",
-          "link": 112
-        },
-        {
-          "name": "positive",
-          "type": "CONDITIONING",
-          "link": 101
-        },
-        {
-          "name": "negative",
-          "type": "CONDITIONING",
-          "link": 76
-        },
-        {
-          "name": "latent_image",
-          "type": "LATENT",
-          "link": 115
-        }
-      ],
-      "outputs": [
-        {
-          "name": "LATENT",
-          "type": "LATENT",
-          "slot_index": 0,
-          "links": [
-            78
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "KSampler",
-        "cnr_id": "comfy-core",
-        "ver": "0.25.0"
-      },
-      "widgets_values": [
-        1061922189404452,
-        "randomize",
-        8,
-        1,
-        "euler",
-        "simple",
-        0.55
-      ]
-    },
-    {
       "id": 54,
       "type": "VAEDecode",
       "pos": [
@@ -237,7 +57,7 @@
       "flags": {
         "collapsed": false
       },
-      "order": 12,
+      "order": 11,
       "mode": 0,
       "inputs": [
         {
@@ -269,30 +89,6 @@
       "widgets_values": []
     },
     {
-      "id": 48,
-      "type": "MarkdownNote",
-      "pos": [
-        -1031.4620892194916,
-        -390.53636850404234
-      ],
-      "size": [
-        700,
-        990
-      ],
-      "flags": {},
-      "order": 4,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [],
-      "title": "Model Links",
-      "properties": {},
-      "widgets_values": [
-        "Guide: [Subgraph](https://docs.comfy.org/interface/features/subgraph)\n\n## Model Links (for Local Users)\n\nFor BF16 and NVFP4 variants, see [Comfy-Org/Krea-2](https://huggingface.co/Comfy-Org/Krea-2)\n\n**diffusion_models**\n\n- [krea2_turbo_fp8_scaled.safetensors](https://huggingface.co/Comfy-Org/Krea-2/resolve/main/diffusion_models/krea2_turbo_fp8_scaled.safetensors)\n\n**text_encoders**\n\n- [qwen3vl_4b_fp8_scaled.safetensors](https://huggingface.co/Comfy-Org/Krea-2/resolve/main/text_encoders/qwen3vl_4b_fp8_scaled.safetensors)\n\n**vae**\n\n- [qwen_image_vae.safetensors](https://huggingface.co/Comfy-Org/Krea-2/resolve/main/vae/qwen_image_vae.safetensors)\n\n## Model Storage Location\n\n```\n📂 ComfyUI/\n├── 📂 models/\n│   ├── 📂 diffusion_models/\n│   │   └── krea2_turbo_fp8_scaled.safetensors\n│   ├── 📂 text_encoders/\n│   │   └── qwen3vl_4b_fp8_scaled.safetensors\n│   └── 📂 vae/\n│       └── qwen_image_vae.safetensors\n│   \n```\n\n## Report Issue\n\nNote: Please update ComfyUI first ([guide](https://docs.comfy.org/installation/update_comfyui)) and prepare required models. Desktop/Cloud updates follow stable releases, so some nightly-supported models may not be available yet.\n"
-      ],
-      "color": "#222",
-      "bgcolor": "#000"
-    },
-    {
       "id": 29,
       "type": "SaveImage",
       "pos": [
@@ -304,7 +100,7 @@
         837.273237012228
       ],
       "flags": {},
-      "order": 13,
+      "order": 12,
       "mode": 0,
       "inputs": [
         {
@@ -330,120 +126,6 @@
       ]
     },
     {
-      "id": 72,
-      "type": "LoadImage",
-      "pos": [
-        -297.33789284524113,
-        -355.37269237954024
-      ],
-      "size": [
-        452.3484848484843,
-        586.4747154929411
-      ],
-      "flags": {},
-      "order": 5,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "IMAGE",
-          "type": "IMAGE",
-          "links": [
-            102
-          ]
-        },
-        {
-          "name": "MASK",
-          "type": "MASK",
-          "links": null
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "LoadImage"
-      },
-      "widgets_values": [
-        "B-13.-Matisse-Joins“Van-Gogh-Artist-Club”-馬蒂斯-參加「梵谷藝術家俱樂部」.jpg",
-        "image"
-      ],
-      "title": "Load Style Reference Image"
-    },
-    {
-      "id": 71,
-      "type": "Krea2StyleSemanticFusion",
-      "pos": [
-        1395.6851492295784,
-        -288.0036258182914
-      ],
-      "size": [
-        420,
-        250
-      ],
-      "flags": {},
-      "order": 8,
-      "mode": 0,
-      "inputs": [
-        {
-          "label": "CLIP",
-          "name": "clip",
-          "type": "CLIP",
-          "link": 100
-        },
-        {
-          "label": "VAE",
-          "name": "vae",
-          "type": "VAE",
-          "link": 113
-        },
-        {
-          "label": "?????",
-          "name": "style_image",
-          "type": "IMAGE",
-          "link": 102
-        },
-        {
-          "label": "?????",
-          "name": "target_image",
-          "type": "IMAGE",
-          "link": 114
-        },
-        {
-          "name": "prompt",
-          "type": "STRING",
-          "widget": {
-            "name": "prompt"
-          },
-          "link": 105
-        }
-      ],
-      "outputs": [
-        {
-          "name": "??",
-          "type": "CONDITIONING",
-          "links": [
-            101,
-            103
-          ]
-        },
-        {
-          "name": "??Latent",
-          "type": "LATENT",
-          "links": [
-            115
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "Krea2StyleSemanticFusion"
-      },
-      "widgets_values": [
-        "a cinematic portrait, detailed lighting,a handsome man",
-        "??",
-        512,
-        ""
-      ],
-      "title": "Krea2 ????"
-    },
-    {
       "id": 55,
       "type": "UNETLoader",
       "pos": [
@@ -455,7 +137,7 @@
         140
       ],
       "flags": {},
-      "order": 7,
+      "order": 0,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -485,18 +167,162 @@
       ]
     },
     {
-      "id": 73,
+      "id": 56,
+      "type": "CLIPLoader",
+      "pos": [
+        848.2016208333333,
+        -101.31546341552672
+      ],
+      "size": [
+        450,
+        170
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            113
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPLoader",
+        "cnr_id": "comfy-core",
+        "ver": "0.25.0",
+        "models": [
+          {
+            "name": "qwen3vl_4b_fp8_scaled.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/Krea-2/resolve/main/text_encoders/qwen3vl_4b_fp8_scaled.safetensors",
+            "directory": "text_encoders"
+          }
+        ]
+      },
+      "widgets_values": [
+        "qwen3vl_4b_fp8_scaled.safetensors",
+        "krea2",
+        "default"
+      ]
+    },
+    {
+      "id": 57,
+      "type": "VAELoader",
+      "pos": [
+        858.5767839405406,
+        130.40566568400132
+      ],
+      "size": [
+        450,
+        120
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            79,
+            119
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAELoader",
+        "cnr_id": "comfy-core",
+        "ver": "0.25.0",
+        "models": [
+          {
+            "name": "qwen_image_vae.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/Krea-2/resolve/main/vae/qwen_image_vae.safetensors",
+            "directory": "vae"
+          }
+        ]
+      },
+      "widgets_values": [
+        "qwen_image_vae.safetensors"
+      ]
+    },
+    {
+      "id": 53,
+      "type": "KSampler",
+      "pos": [
+        1886.9881730313389,
+        -301.2219587121206
+      ],
+      "size": [
+        320,
+        590
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 112
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 115
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 76
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 117
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            78
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler",
+        "cnr_id": "comfy-core",
+        "ver": "0.25.0"
+      },
+      "widgets_values": [
+        92606544150028,
+        "randomize",
+        8,
+        1,
+        "euler",
+        "simple",
+        0.55
+      ]
+    },
+    {
+      "id": 72,
       "type": "LoadImage",
       "pos": [
-        -297.33789284524113,
-        20.0
+        -781.0338420037322,
+        -362.3571245328394
       ],
       "size": [
         452.3484848484843,
         586.4747154929411
       ],
       "flags": {},
-      "order": 6,
+      "order": 3,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -517,10 +343,218 @@
         "Node name for S&R": "LoadImage"
       },
       "widgets_values": [
-        "B-13.-Matisse-Joins“Van-Gogh-Artist-Club”-馬蒂斯-參加「梵谷藝術家俱樂部」.jpg",
+        "2025_HGK_23393_0008_000(pablo_picasso_buste_de_femme053637).jpg",
         "image"
+      ]
+    },
+    {
+      "id": 48,
+      "type": "MarkdownNote",
+      "pos": [
+        -1901.5321011121925,
+        -431.68151287338577
       ],
-      "title": "Load Target Image (replace me)"
+      "size": [
+        700,
+        990
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Model Links",
+      "properties": {},
+      "widgets_values": [
+        "Guide: [Subgraph](https://docs.comfy.org/interface/features/subgraph)\n\n## Model Links (for Local Users)\n\nFor BF16 and NVFP4 variants, see [Comfy-Org/Krea-2](https://huggingface.co/Comfy-Org/Krea-2)\n\n**diffusion_models**\n\n- [krea2_turbo_fp8_scaled.safetensors](https://huggingface.co/Comfy-Org/Krea-2/resolve/main/diffusion_models/krea2_turbo_fp8_scaled.safetensors)\n\n**text_encoders**\n\n- [qwen3vl_4b_fp8_scaled.safetensors](https://huggingface.co/Comfy-Org/Krea-2/resolve/main/text_encoders/qwen3vl_4b_fp8_scaled.safetensors)\n\n**vae**\n\n- [qwen_image_vae.safetensors](https://huggingface.co/Comfy-Org/Krea-2/resolve/main/vae/qwen_image_vae.safetensors)\n\n## Model Storage Location\n\n```\n📂 ComfyUI/\n├── 📂 models/\n│   ├── 📂 diffusion_models/\n│   │   └── krea2_turbo_fp8_scaled.safetensors\n│   ├── 📂 text_encoders/\n│   │   └── qwen3vl_4b_fp8_scaled.safetensors\n│   └── 📂 vae/\n│       └── qwen_image_vae.safetensors\n│   \n```\n\n## Report Issue\n\nNote: Please update ComfyUI first ([guide](https://docs.comfy.org/installation/update_comfyui)) and prepare required models. Desktop/Cloud updates follow stable releases, so some nightly-supported models may not be available yet.\n"
+      ],
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 74,
+      "type": "LoadImage",
+      "pos": [
+        -302.64633361985983,
+        -361.65012396563515
+      ],
+      "size": [
+        461.9189787818493,
+        586.4315002571633
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            121
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "base turbo01.png",
+        "image"
+      ]
+    },
+    {
+      "id": 75,
+      "type": "ResizeImagesByLongerEdge",
+      "pos": [
+        -295.5588945919496,
+        323.23909850459654
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 121
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            120
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ResizeImagesByLongerEdge"
+      },
+      "widgets_values": [
+        1024
+      ]
+    },
+    {
+      "id": 73,
+      "type": "Krea2StyleSemanticFusion",
+      "pos": [
+        1392.1225919926098,
+        -306.22593004546377
+      ],
+      "size": [
+        400,
+        250
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "CLIP",
+          "name": "clip",
+          "type": "CLIP",
+          "link": 113
+        },
+        {
+          "label": "VAE",
+          "name": "vae",
+          "type": "VAE",
+          "link": 119
+        },
+        {
+          "label": "风格参考图",
+          "name": "style_image",
+          "type": "IMAGE",
+          "link": 114
+        },
+        {
+          "label": "目标结构图",
+          "name": "target_image",
+          "type": "IMAGE",
+          "link": 120
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 122
+        }
+      ],
+      "outputs": [
+        {
+          "name": "条件",
+          "type": "CONDITIONING",
+          "links": [
+            115,
+            116
+          ]
+        },
+        {
+          "name": "目标Latent",
+          "type": "LATENT",
+          "links": [
+            117
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Krea2StyleSemanticFusion"
+      },
+      "widgets_values": [
+        "a young girl in a red coat standing in a crowded subway station corridor, commuters around her, overhead fluorescent lights, deep perspective, preserve the target image composition and subject",
+        "平衡",
+        512,
+        ""
+      ]
+    },
+    {
+      "id": 63,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        191.6599541666667,
+        -359.17650416666663
+      ],
+      "size": [
+        570,
+        800
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            122
+          ]
+        }
+      ],
+      "title": "Text String (User Prompt)",
+      "properties": {
+        "Node name for S&R": "PrimitiveStringMultiline",
+        "cnr_id": "comfy-core",
+        "ver": "0.25.0"
+      },
+      "widgets_values": [
+        "a young girl in a red coat standing in a crowded subway station corridor, commuters around her, overhead fluorescent lights, deep perspective, preserve the target image composition and subject"
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
     }
   ],
   "links": [
@@ -557,46 +591,6 @@
       "IMAGE"
     ],
     [
-      100,
-      56,
-      0,
-      71,
-      0,
-      "CLIP"
-    ],
-    [
-      101,
-      71,
-      0,
-      53,
-      1,
-      "CONDITIONING"
-    ],
-    [
-      102,
-      72,
-      0,
-      71,
-      1,
-      "IMAGE"
-    ],
-    [
-      103,
-      71,
-      0,
-      58,
-      0,
-      "CONDITIONING"
-    ],
-    [
-      105,
-      63,
-      0,
-      71,
-      2,
-      "STRING"
-    ],
-    [
       112,
       55,
       0,
@@ -606,27 +600,75 @@
     ],
     [
       113,
-      57,
+      56,
       0,
-      71,
-      1,
-      "VAE"
+      73,
+      0,
+      "CLIP"
     ],
     [
       114,
-      73,
+      72,
       0,
-      71,
-      3,
+      73,
+      2,
       "IMAGE"
     ],
     [
       115,
-      71,
+      73,
+      0,
+      53,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      116,
+      73,
+      0,
+      58,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      117,
+      73,
       1,
       53,
       3,
       "LATENT"
+    ],
+    [
+      119,
+      57,
+      0,
+      73,
+      1,
+      "VAE"
+    ],
+    [
+      120,
+      75,
+      0,
+      73,
+      3,
+      "IMAGE"
+    ],
+    [
+      121,
+      74,
+      0,
+      75,
+      0,
+      "IMAGE"
+    ],
+    [
+      122,
+      63,
+      0,
+      73,
+      4,
+      "STRING"
     ]
   ],
   "groups": [
@@ -656,7 +698,7 @@
     },
     {
       "id": 6,
-      "title": "Image Generation / Img2Img Fusion",
+      "title": "Image Generation",
       "bounding": [
         821.6599541666667,
         -429.17650416666663,
@@ -679,23 +721,11 @@
       "flags": {}
     },
     {
-      "id": 8,
-      "title": "Size",
-      "bounding": [
-        1351.6599541666667,
-        200.82349583333337,
-        500,
-        260
-      ],
-      "color": "#3f789e",
-      "flags": {}
-    },
-    {
       "id": 10,
       "title": "Refrence",
       "bounding": [
-        -307.33789284524113,
-        -425.37269237954024,
+        -791.6802690813447,
+        -427.3469641805391,
         472.3484848484843,
         666.4747154929411
       ],
@@ -703,13 +733,25 @@
       "flags": {}
     },
     {
-      "id": 11,
-      "title": "Resolution",
+      "id": 12,
+      "title": "Target",
       "bounding": [
-        -300.795550490871,
-        271.2625942808205,
-        470.25255723432997,
-        207.12121212121235
+        -310.15389199399505,
+        -429.15768233977025,
+        475.06462168989106,
+        668.3008600007279
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 13,
+      "title": "Longest Edge",
+      "bounding": [
+        -305.5588945919496,
+        253.2390985045965,
+        290,
+        138
       ],
       "color": "#3f789e",
       "flags": {}
@@ -718,10 +760,10 @@
   "config": {},
   "extra": {
     "ds": {
-      "scale": 0.525739320920046,
+      "scale": 0.4537356919474306,
       "offset": [
-        490.38217546116437,
-        976.1308747354344
+        1076.5217632898114,
+        1383.3894810579188
       ]
     },
     "frontendVersion": "1.45.19",
